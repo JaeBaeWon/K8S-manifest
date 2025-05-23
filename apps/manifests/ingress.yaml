@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-service-ingress
+  namespace: backend
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing  # ALB의 인터넷-facing 설정
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'  # HTTPS 443 포트에서 트래픽 수신
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:region:account-id:certificate/certificate-id  # SSL 인증서
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - host: app.shoong.store  # 기본 호스트 이름
+      http:
+        paths:
+          - path: /argocd  # ArgoCD의 웹 UI를 위한 경로
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server  # ArgoCD 서버 서비스 이름
+                port:
+                  number: 80
+
+          - path: /api  # Spring 애플리케이션의 API를 위한 경로
+            pathType: Prefix
+            backend:
+              service:
+                name: spring-app  # Spring 애플리케이션 서비스 이름
+                port:
+                  number: 8080
+
+          - path: /redis  # Redis 서비스에 대한 경로 (보통은 외부에 직접 노출하지 않지만, 필요시 추가 가능)
+            pathType: Prefix
+            backend:
+              service:
+                name: redis-service  # Redis 서비스 이름
+                port:
+                  number: 6379  # Redis의 기본 포트
