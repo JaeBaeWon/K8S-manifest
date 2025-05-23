@@ -1,1 +1,1 @@
-# K8S manifests for podopicker
+# K8S-manifest
