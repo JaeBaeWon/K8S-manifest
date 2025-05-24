@@ -4,6 +4,7 @@ metadata:
   name: sample-app
   namespace: argocd
 spec:
+  project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -11,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/JaeBaeWon/K8S-manifest.git
     targetRevision: HEAD
-    path: manifests
+    path: apps/backend
   syncPolicy:
     automated:
       prune: true

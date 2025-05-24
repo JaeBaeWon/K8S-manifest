@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: backend
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: backend
-        image: your-backend-image:latest
+        image: docker-repo/backend:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
