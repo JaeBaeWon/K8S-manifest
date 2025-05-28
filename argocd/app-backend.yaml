@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/JaeBaeWon/K8S-manifest.git
-    targetRevision: HEAD
+    targetRevision: develop
     path: apps/backend
   syncPolicy:
     automated:
