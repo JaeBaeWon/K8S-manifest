@@ -1,19 +1,162 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: spring-app
+  namespace: backend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: spring-app
   template:
     metadata:
       labels:
-        app: backend
+        app: spring-app
     spec:
+      serviceAccountName: spring-app-sa
       containers:
-      - name: backend
-        image: jeongho427/podopicker:latest
-        ports:
-        - containerPort: 8080
+        - name: spring-app
+          image: nanahj/podopicker:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AWS_REGION
+              value: ap-northeast-2
+
+            # === DB ===
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: DB_URL
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: DB_PASSWORD
+
+            # === JWT ===
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: JWT_SECRET
+
+            # === Google OAuth ===
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: GOOGLE_CLIENT_SECRET
+
+            # === Kakao OAuth ===
+            - name: KAKAO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAKAO_CLIENT_ID
+            - name: KAKAO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAKAO_CLIENT_SECRET
+            - name: KAKAO_REDIRECT_URI
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAKAO_REDIRECT_URI
+
+            # === Naver OAuth ===
+            - name: NAVER_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: NAVER_CLIENT_ID
+            - name: NAVER_CLINET_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: NAVER_CLINET_SECRET
+            - name: NAVER_REDIRECT_URI
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: NAVER_REDIRECT_URI
+
+            # === Kafka ===
+            - name: KAFKA_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAFKA_SERVER
+
+            # === Redis ===
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: REDIS_HOST
+
+            # === Mail ===
+            - name: MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: MAIL_HOST
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: MAIL_USERNAME
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: MAIL_PASSWORD
+            - name: MAIL_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: MAIL_NAME
+
+            # === 기타 ===
+            - name: RECAPTCHA_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: RECAPTCHA_SECRET
+            - name: COOLSMS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: COOLSMS_KEY
+            - name: COOLSMS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: COOLSMS_SECRET
+            - name: PETHARMONY
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: PETHARMONY
+            - name: IAMPORT-API-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: IAMPORT-API-KEY
+            - name: IAMPORT-API-SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: IAMPORT-API-SECRET
