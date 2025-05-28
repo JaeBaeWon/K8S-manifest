@@ -82,11 +82,11 @@ spec:
                 secretKeyRef:
                   name: spring-app-secret
                   key: NAVER_CLIENT_ID
-            - name: NAVER_CLINET_SECRET
+            - name: NAVER_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: spring-app-secret
-                  key: NAVER_CLINET_SECRET
+                  key: NAVER_CLIENT_SECRET
             - name: NAVER_REDIRECT_URI
               valueFrom:
                 secretKeyRef:
