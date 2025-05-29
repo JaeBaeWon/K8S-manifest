@@ -6,7 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing  # ALB의 인터넷-facing 설정
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'  # HTTPS 443 포트에서 트래픽 수신
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:639965457439:certificate/e305cca1-00d8-4d46-a8c2-c2bb662aab9c
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:639965457439:certificate/8268e101-0908-49c5-b268-92c252bde5f1
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
