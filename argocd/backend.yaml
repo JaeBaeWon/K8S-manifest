@@ -7,11 +7,10 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
-  project: default
+    namespace: backend
   source:
     repoURL: https://github.com/JaeBaeWon/K8S-manifest.git
-    targetRevision: develop
+    targetRevision: main
     path: apps/backend
   syncPolicy:
     automated:
