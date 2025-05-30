@@ -6,7 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing 
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:639965457439:certificate/8268e101-0908-49c5-b268-92c252bde5f1
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:639965457439:certificate/278411af-54d6-408e-b521-bb93f7a8d02f
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
