@@ -16,9 +16,10 @@ spec:
       serviceAccountName: spring-app-sa
       containers:
         - name: spring-app
-          image: nanahj/podopicker:57
+          image: nanahj/podopicker:61
           ports:
             - containerPort: 8080
+              name: http
           env:
             - name: AWS_REGION
               value: ap-northeast-2
