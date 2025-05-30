@@ -19,6 +19,7 @@ spec:
           image: nanahj/podopicker:39
           ports:
             - containerPort: 8080
+              name: http
           env:
             - name: AWS_REGION
               value: ap-northeast-2
@@ -99,6 +100,16 @@ spec:
                 secretKeyRef:
                   name: spring-app-secret
                   key: KAFKA_SERVER
+            - name: KAFKA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAFKA_USERNAME
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-secret
+                  key: KAFKA_PASSWORD
 
             # === Redis ===
             - name: REDIS_HOST
