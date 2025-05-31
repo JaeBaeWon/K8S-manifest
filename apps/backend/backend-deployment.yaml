@@ -16,7 +16,7 @@ spec:
       serviceAccountName: spring-app-sa
       containers:
         - name: spring-app
-          image: nanahj/podopicker:67
+          image: nanahj/podopicker:68
           ports:
             - containerPort: 8080
               name: http
