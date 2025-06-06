@@ -185,12 +185,12 @@ spec:
                 secretKeyRef:
                   name: spring-app-secret
                   key: PETHARMONY
-            - name: iamport.api-key
+            - name: IAMPORT-API-KEY
               valueFrom:
                 secretKeyRef:
                   name: spring-app-secret
                   key: IAMPORT-API-KEY
-            - name: iamport.api-secret
+            - name: IAMPORT-API-SECRET
               valueFrom:
                 secretKeyRef:
                   name: spring-app-secret
